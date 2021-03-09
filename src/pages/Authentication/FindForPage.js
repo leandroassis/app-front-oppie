@@ -4,8 +4,9 @@ import { View, StyleSheet, Text, TouchableOpacity, Image} from 'react-native'
 import Circle from '../../components/Circles'
 import ThreeCircles from '../../components/ThreeCircles'
 
-import NewClient from '../../../assets/undraw_businessman_97x4.png'
-import Professionals from '../../../assets/undraw_contract_uy56.png'
+import NewClientLogo from '../../components/NewClientLogo'
+import Client from '../../components/Clients'
+import logo from '../../../assets/Logotipo.png'
 
 export default function FindForPage(){
   return (
@@ -50,20 +51,20 @@ export default function FindForPage(){
             flexDirection:'row',
             justifyContent:'space-between',
             width:375,
-            top:195
+            top:210
         }}>
-        <TouchableOpacity activeOpacity={0.98} style={styles.WhiteContainer}>
-            <Image source={Professionals} style={styles.Image}/>
+        <TouchableOpacity activeOpacity={0.6} style={styles.WhiteContainer} onPress={()=>{}}>
+            <NewClientLogo width={170} height={140} marginTop={35} />
             <Text style={styles.InsideText}>Profissionais.</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity activeOpacity={1} style={styles.WhiteContainer}>
-            <Image source={NewClient} style={styles.Image}/>
+        <TouchableOpacity activeOpacity={0.6} style={styles.WhiteContainer} onPress={()=>{}}>
+            <Client width={170} height={140} marginTop={35} />
             <Text style={styles.InsideText}>Novos clientes.</Text>
         </TouchableOpacity>
         </View>
 
-        <Image/>
+        <Image source={logo} style={styles.ImageLogo}/>
 
         {/*Navegação bottom*/}
     </View>
@@ -92,10 +93,13 @@ const styles = StyleSheet.create({
     InsideText:{
         fontFamily:'serif',
         fontSize:16,
+        marginTop:20
     },
-    Image:{
-        width:151,
-        height:148,
-        top:4
+    ImageLogo:{
+        width:250,
+        height:190,
+        marginTop:270,
+        alignSelf:'center',
+        borderRadius:100
     }
 })

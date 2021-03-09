@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, TextInput, Image, TouchableOpacity, KeyboardAvo
 
 import ThreeCircles from '../../components/ThreeCircles'
 import Circle from '../../components/Circles'
-import icon from '../../../assets/undraw_message_sent_1030.png'
+import EmailConfirmation from '../../components/EmailConfirmation'
 
 function ConfirmEmailPage() {
   return(
@@ -12,7 +12,7 @@ function ConfirmEmailPage() {
       <ThreeCircles left={-125} top={-195} rotation={'-90deg'} color={'rgba(255, 182, 137, 0.48);'} />
       <Circle left={-55} top={500} color={'rgba(255, 182, 137, 0.48);'} />
 
-      <Image source={icon} style={styles.Image}/>
+      <EmailConfirmation width={350}  height={250} marginTop={100}/>      
       <View style={{
         alignItems:'center',
         justifyContent:'center'
