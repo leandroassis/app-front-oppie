@@ -1,12 +1,17 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import InitialScreen from './src/components/initialScreen'
+import { StyleSheet, View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native'
+
+import LandingPage from './src/pages/Authentication/LandingPage'
+import LoginPage from './src/pages/Authentication/LoginPage'
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <InitialScreen/>
-    </View>
+      <View style={styles.container}>
+        {/*<LandingPage/>*/}
+        <LoginPage/>
+      </View>
   );
 }
 

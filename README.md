@@ -10,3 +10,5 @@
     - 
 
 # Doing:
+- Tela de abertura completamente funcional!
+- 

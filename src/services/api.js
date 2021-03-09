@@ -1,7 +1,6 @@
-import React from 'react'
 import axios from 'axios'
 
-import {URL_API} from '@env'
+import {URL_API} from 'react-native-dotenv'
 
 
 const api = axios.create({
