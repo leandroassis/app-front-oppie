@@ -77,7 +77,7 @@ function ConfirmEmailPage() {
               color:'#fff',
               fontSize:18,
               fontFamily:'serif'
-              }}>Entrar</Text>
+              }}>Enviar</Text>
           </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
