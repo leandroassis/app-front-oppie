@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, TextInput, TouchableOpacity, FlatList } from 'react-native'
+import { View, StyleSheet, Text, TextInput, TouchableOpacity, FlatList, BackHandler } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons'; 
 
@@ -19,7 +19,7 @@ import Repair from '../../components/Repair'
 import Transport from '../../components/Transport'
 import WriteAndTranslation from '../../components/WriteAndTranslation'
 
-export default function CategoryPage() {
+export default function CategoryPage({navigation}) {
   const [isFocus, setFocus] = useState(false)
   const [tags, AddTag] = useState([
     {
@@ -92,6 +92,8 @@ export default function CategoryPage() {
         component:<WriteAndTranslation/>
     },
   ])
+
+  BackHandler.addEventListener('hardwareBackPress', ()=>{navigation.navigate('Find for')})
 
   return(
       <View style={styles.BackGround}>
@@ -167,7 +169,7 @@ export default function CategoryPage() {
             keyExtractor={categ => categ.title}
             renderItem={
                 ({item})=>
-                <TouchableOpacity activeOpacity={0.6} style={styles.WhiteContainer} onPress={()=>{}}>
+                <TouchableOpacity activeOpacity={0.6} style={styles.WhiteContainer} key={item.title} onPress={()=>{}}>
                     {item.component}
                     <Text style={styles.InsideText}>{item.title}</Text>
                     <Text style={styles.Description}>{item.description}</Text>
@@ -175,15 +177,15 @@ export default function CategoryPage() {
             }
             numColumns={2}
           />
-        </View>
 
-        <TouchableOpacity activeOpacity={0.7} style={styles.Button}>
+          <TouchableOpacity activeOpacity={0.7} style={styles.Button} onPress={()=>{navigation.navigate('More Data', { path:'Category Type' })}}>
             <Text style={{
               color:'#fff',
               fontSize:18,
               fontFamily:'serif'
               }}>Prosseguir</Text>
-        </TouchableOpacity>
+          </TouchableOpacity>
+        </View>
 
       </View>
   );
@@ -251,6 +253,7 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     
     marginTop: 15,
+    marginBottom:25,
 
     width:360,
     height:60,

@@ -7,7 +7,7 @@ import ThreeCircles from '../../components/ThreeCircles'
 import Circle from '../../components/Circles'
 
 
-function SignUpPage(){
+function SignUpPage({ navigation }){
   return(
     <View style={styles.BackGround}>
     <ThreeCircles left={-140} top={-180} rotation={'-90deg'}/>
@@ -17,7 +17,7 @@ function SignUpPage(){
       position:'absolute',
       top:110,
       left:10
-    }} onPress={()=>{}}/>
+    }} onPress={()=>{navigation.navigate('Landing Page')}}/>
 
     <Text style={styles.OutsideText}>Faça seu cadastro e alcance</Text>
     <Text style={styles.OutsideText2}>mais clientes e serviços!</Text>
@@ -69,10 +69,10 @@ function SignUpPage(){
           color:'rgba(0,0,0,0.75)',
           marginTop:25,
           marginBottom:5
-        }} onPress={()=>{}}>Entre!</Text>
+        }} onPress={()=>{navigation.navigate('Login')}}>Entre!</Text>
       </View>
       
-      <TouchableOpacity style={styles.Button}>
+      <TouchableOpacity style={styles.Button} onPress={()=>{navigation.navigate('Confirm Email')}}>
         <Text style={{
           color:'#fff',
           fontSize:18,

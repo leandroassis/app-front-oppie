@@ -8,7 +8,7 @@ import logotipo from '../../assets/Logotipo.png'
 
 import orange2 from '../../assets/866-orange-loading.json'
 
-export default function LoadingPage(){
+export default function LoadingPage({ navigation }){
     return(
         <View style={styles.BackGround}>
             <ThreeCircles left={240} top={540} rotation={'35deg'}/>
@@ -16,7 +16,7 @@ export default function LoadingPage(){
             <ThreeCircles left={-140} top={-180} rotation={'-90deg'}/>
             <Circle left={-55} top={550}/>
        
-            <LottieView source={orange2} autoPlay aytoSize onAnimationFinish={()=>{}} duration={2500} style={{
+            <LottieView source={orange2} autoPlay aytoSize onAnimationFinish={()=>{navigation.navigate('Landing Page')}} duration={2100} loop={false} style={{
                 bottom:'15%'
             }}/>
 

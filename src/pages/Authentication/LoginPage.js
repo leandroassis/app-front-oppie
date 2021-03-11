@@ -6,9 +6,10 @@ import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
 import ThreeCircles from '../../components/ThreeCircles'
 import Circle from '../../components/Circles'
 
-function LoginPage(){
+function LoginPage({ navigation }){
   const [Email, setEmail] = useState(0)
   const [Password, setPassword] = useState("")
+
   return(
     <View style={styles.BackGround}>
         <ThreeCircles left={-140} top={-180} rotation={'-90deg'}/>
@@ -18,7 +19,7 @@ function LoginPage(){
           position:'absolute',
           top:90,
           left:15
-        }} onPress={()=>{}}/>
+        }} onPress={()=>{navigation.navigate('Landing Page')}}/>
 
         <Text style={styles.OutsideText}>Bem vindo ao Teko,</Text>
         <Text style={styles.OutsideText2}>seu catálogo de serviços.</Text>
@@ -69,7 +70,7 @@ function LoginPage(){
               color:'rgba(0,0,0,0.75)',
               marginTop:35,
               marginBottom:5
-            }} onPress={()=>{}}>Cadastre-se</Text>
+            }} onPress={()=>{navigation.navigate('SignUp')}}>Cadastre-se</Text>
           </View>
 
           <Text style={{

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, Image} from 'react-native'
+import { View, StyleSheet, Text, TouchableOpacity, Image, BackHandler} from 'react-native'
 
 import Circle from '../../components/Circles'
 import ThreeCircles from '../../components/ThreeCircles'
@@ -8,7 +8,10 @@ import NewClientLogo from '../../components/NewClientLogo'
 import Client from '../../components/Clients'
 import logo from '../../../assets/Logotipo.png'
 
-export default function FindForPage(){
+export default function FindForPage({ navigation }){
+
+    BackHandler.addEventListener('hardwareBackPress', ()=>{return true})
+
   return (
     <View style={styles.BackGround}>
         <ThreeCircles left={240} top={540} rotation={'35deg'}/>
@@ -53,12 +56,12 @@ export default function FindForPage(){
             width:375,
             top:210
         }}>
-        <TouchableOpacity activeOpacity={0.6} style={styles.WhiteContainer} onPress={()=>{}}>
+        <TouchableOpacity activeOpacity={0.6} style={styles.WhiteContainer} onPress={()=>{navigation.navigate('Category Type')}}>
             <NewClientLogo width={170} height={140} marginTop={35} />
             <Text style={styles.InsideText}>Profissionais.</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity activeOpacity={0.6} style={styles.WhiteContainer} onPress={()=>{}}>
+        <TouchableOpacity activeOpacity={0.6} style={styles.WhiteContainer} onPress={()=>{navigation.navigate('Job Type')}}>
             <Client width={170} height={140} marginTop={35} />
             <Text style={styles.InsideText}>Novos clientes.</Text>
         </TouchableOpacity>

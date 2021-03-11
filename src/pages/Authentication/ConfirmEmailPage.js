@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, StyleSheet, Text, TextInput, Image, TouchableOpacity, KeyboardAvoidingView } from 'react-native'
+import { View, StyleSheet, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, BackHandler } from 'react-native'
 
 import ThreeCircles from '../../components/ThreeCircles'
 import Circle from '../../components/Circles'
 import EmailConfirmation from '../../components/EmailConfirmation'
 
-function ConfirmEmailPage() {
+function ConfirmEmailPage({navigation}) {
+  BackHandler.addEventListener('hardwareBackPress', ()=>{navigation.navigate('SignUp')})
   return(
     <KeyboardAvoidingView style={styles.BackGround} behavior="position">
       <ThreeCircles left={240} top={510} rotation={'35deg'} color={'rgba(255, 182, 137, 0.48);'} />
@@ -69,10 +70,11 @@ function ConfirmEmailPage() {
           fontSize:15,
           textDecorationLine:'underline',
           color:'#FF914D',
-          marginBottom:20
+          marginBottom:20,
+          marginTop:10
         }}>Reenviar email de confirmação</Text>
 
-          <TouchableOpacity style={styles.Button}>
+          <TouchableOpacity style={styles.Button} onPress={()=>{navigation.navigate('Find for')}}>
             <Text style={{
               color:'#fff',
               fontSize:18,

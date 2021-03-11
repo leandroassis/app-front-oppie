@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, TextInput, FlatList, KeyboardAvoidingView } from 'react-native'
+import { View, StyleSheet, Text, TouchableOpacity, TextInput, FlatList, KeyboardAvoidingView, BackHandler } from 'react-native'
 
 import ThreeCircles from '../../components/ThreeCircles'
 import Circle from '../../components/Circles'
 
-function MoreData(){
+function MoreData({ navigation, route }){
     const [inputs, setInputs] = useState([
         {
             placeholder:"Nome do estabelecimento",
@@ -47,6 +47,10 @@ function MoreData(){
             maxLength:20
         },
     ])
+    
+    let path = route.params.path
+    console.log(path)
+    BackHandler.addEventListener('hardwareBackPress', ()=>{navigation.goBack(path)})
 
   return(
     <KeyboardAvoidingView style={styles.BackGround} behavior="position">

@@ -1,11 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, BackHandler } from 'react-native';
 
 import Circle from '../../components/Circles'
 import ThreeCircles from '../../components/ThreeCircles'
 import logotipo from '../../../assets/Logotipo.png'
 
-export default function LandingPage(){
+
+export default function LandingPage({ navigation }){
+    
+    BackHandler.addEventListener('hardwareBackPress', ()=>{return true})
+
     return(
         <View style={styles.BackGround}>
             <ThreeCircles left={240} top={540} rotation={'35deg'}/>
@@ -41,7 +45,7 @@ export default function LandingPage(){
         
                 borderColor:'#ddd'
             }}
-                onPress={()=>{}}
+                onPress={()=>{navigation.navigate('Login')}}
                 activeOpacity={0.8}
             >
                 <Text style={{
@@ -74,7 +78,7 @@ export default function LandingPage(){
 
                 borderColor:'#ddd'
             }}
-                onPress={()=>{}}
+                onPress={()=>{navigation.navigate('SignUp')}}
                 activeOpacity={0.8}
             >
                 <Text style={{
