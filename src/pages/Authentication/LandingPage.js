@@ -1,25 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-//import LottieView from 'lottie-react-native'
 
-import api from '../../services/api'
 import Circle from '../../components/Circles'
 import ThreeCircles from '../../components/ThreeCircles'
-
 import logotipo from '../../../assets/Logotipo.png'
 
 export default function LandingPage(){
-    async function LoadData(){
-        const response = await api.get("/") //futuramente dá um get no menu com o token 
-        if(response.length != 0){
-            
-            //adicionar navegação com os dados do response
-        }
-        else{
-            //aficionar navegação sem os dados do response
-        }
-    }
-
     return(
         <View style={styles.BackGround}>
             <ThreeCircles left={240} top={540} rotation={'35deg'}/>
