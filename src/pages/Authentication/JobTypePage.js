@@ -14,7 +14,7 @@ export default function JobTypePage({ navigation }) {
     BackHandler.addEventListener('hardwareBackPress', ()=>{navigation.navigate('Find for')})
 
     function handlePress(){
-        navigation.navigate('More Data')
+        navigation.navigate('More Data', { path:'Job Type' })
     }
 
   return(
@@ -39,13 +39,13 @@ export default function JobTypePage({ navigation }) {
             width:375,
             marginTop:50
         }}>
-        <TouchableOpacity activeOpacity={0.6} style={styles.WhiteContainer} onPress={()=>{handlePress}}>
+        <TouchableOpacity activeOpacity={0.6} style={styles.WhiteContainer} onPress={()=>{handlePress()}}>
             <DogWalking width={170} height={140} marginTop={13}/>
             <Text style={styles.InsideText}>Serviços Presenciais</Text>
             <Text style={styles.Description}>(diarista, pedreiro, cuidador, jardineiro,...)</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity activeOpacity={0.6} style={styles.WhiteContainer} onPress={()=>{handlePress}}>
+        <TouchableOpacity activeOpacity={0.6} style={styles.WhiteContainer} onPress={()=>{handlePress()}}>
             <SpecialEvent width={170} height={140} marginTop={13} />
             <Text style={styles.InsideText}>Loja 1</Text>
             <Text style={styles.Description}>(restaurante, sacolão, padaria, mercado,...)</Text>
@@ -59,13 +59,13 @@ export default function JobTypePage({ navigation }) {
             width:375,
             marginTop:25
         }}>
-        <TouchableOpacity activeOpacity={0.6} style={styles.WhiteContainer} onPress={()=>{handlePress}}>
+        <TouchableOpacity activeOpacity={0.6} style={styles.WhiteContainer} onPress={()=>{handlePress()}}>
             <Barber width={170} height={140} marginTop={13}/>
             <Text style={styles.InsideText}>Loja 2</Text>
             <Text style={styles.Description}>(manutenção, barbearia, salão de beleza,...)</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity activeOpacity={0.6} style={styles.WhiteContainer} onPress={()=>{handlePress}}>
+        <TouchableOpacity activeOpacity={0.6} style={styles.WhiteContainer} onPress={()=>{handlePress()}}>
             <OnlineJob width={170} height={140} marginTop={13}/>
             <Text style={styles.InsideText}>Serviços Online</Text>
             <Text style={styles.Description}>(design, programação, traduções,...)</Text>

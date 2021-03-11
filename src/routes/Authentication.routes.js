@@ -12,6 +12,8 @@ import JobTypePage from '../pages/Authentication/JobTypePage'
 import CategoryPage from '../pages/Authentication/CategoryPage'
 import MoreData from '../pages/Authentication/MoreData'
 
+import CoreRoutes from './Core.routes'
+
 const Stack = createStackNavigator();
 
 export default function AuthenticationRoutes(){
@@ -42,6 +44,9 @@ export default function AuthenticationRoutes(){
                 headerShown:false
             }}/>
             <Stack.Screen name="More Data" component={MoreData} options={{
+                headerShown:false
+            }}/>
+            <Stack.Screen name="Core" component={CoreRoutes} options={{
                 headerShown:false
             }}/>
         </Stack.Navigator>

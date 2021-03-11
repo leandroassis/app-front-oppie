@@ -80,7 +80,7 @@ function MoreData({ navigation, route }){
             showsVerticalScrollIndicator={false}
         />
         
-        <TouchableOpacity style={styles.Button}>
+        <TouchableOpacity style={styles.Button} onPress={()=>{navigation.navigate('Core')}}>
             <Text style={{
             color:'#fff',
             fontSize:18,
