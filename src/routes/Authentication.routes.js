@@ -1,5 +1,5 @@
 import React from 'react'
-import { createStackNavigator } from '@react-navigation/stack'
+import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack'
 
 import LoadingPage from '../pages/LoadingPage'
 import LandingPage from '../pages/Authentication/LandingPage'
@@ -18,7 +18,11 @@ const Stack = createStackNavigator();
 
 export default function AuthenticationRoutes(){
     return(
-        <Stack.Navigator initialRouteName="Loading Page" >
+        <Stack.Navigator initialRouteName="Loading Page" screenOptions={{
+            gestureEnabled:true,
+            gestureDirection:'horizontal',
+            cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS
+        }} >
             <Stack.Screen name="Loading Page" component={LoadingPage} options={{
                 headerShown:false
             }}/>

@@ -1,15 +1,41 @@
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
-
+import React, { useState, useRef } from 'react';
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native'
 import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
+import * as yup from 'yup'
+import { Formik } from 'formik'
 
 import ThreeCircles from '../../components/ThreeCircles'
 import Circle from '../../components/Circles'
+import api from '../../services/api'
 
 function LoginPage({ navigation }){
-  const [Email, setEmail] = useState(0)
-  const [Password, setPassword] = useState("")
+  const [loading, setLoading] = useState(false)
 
+  const ref_input2 = useRef()
+
+  async function submitToAPI(values, isValid){
+    if(isValid){
+      setLoading(true)
+      const Data = {
+        email: values.email,
+        password: values.password
+      }
+      console.log(Data)
+    }
+  }
+
+  const validationSchema = yup.object().shape({
+    email: yup
+      .string()
+      .email("Insira um email válido.")
+      .required("Email é obrigatório."),
+    password: yup
+      .string()
+      .min(8, ({min}) => `Senha deve conter ao menos ${min} dígitos.`)
+      .max(8, ({max}) => `Senha deve conter no máximo ${max} dígitos.`)
+      .required('Senha é obrigatório.')
+  })
+  
   return(
     <View style={styles.BackGround}>
         <ThreeCircles left={-140} top={-180} rotation={'-90deg'}/>
@@ -27,10 +53,42 @@ function LoginPage({ navigation }){
         <View style={styles.WhiteRectangle}>
           <Text style={styles.InsideText1} >Faça login na sua conta para acessar a comunidade!</Text>
           <Text style={styles.InsideText2} >Como deseja continuar?</Text>
-
-          <TextInput onChangeText={event =>{setEmail(event)}} placeholder="Email" style={styles.Input} placeholderTextColor={'#FF914D'} maxLength={50} textContentType="emailAddress" keyboardType='email-address' />
-          <TextInput onChangeText={(event)=>{setPassword(event)}} placeholder="Senha" style={styles.Input} placeholderTextColor={'#FF914D'} maxLength={50} secureTextEntry/>
-
+          <Formik 
+            validationSchema={validationSchema}
+            initialValues={{email:'', password:''}}
+            onSubmit={(values, isValid) =>{submitToAPI(values, isValid)}}
+          >
+          {({handleChange, handleSubmit, values, errors, isValid } )=> (
+          <>
+          <TextInput
+            onChangeText={handleChange('email')}
+            placeholder="Email"
+            name="email"
+            style={styles.Input}
+            placeholderTextColor={'#FF914D'}
+            maxLength={50}
+            textContentType="emailAddress"
+            keyboardType='email-address' 
+            returnKeyType="next"
+            onSubmitEditing={()=>{ref_input2.current.focus()}}
+            blurOnSubmit={false}
+            value={values.email}
+          />
+          {errors.email && <Text style={{fontFamily:'serif', fontSize:13, color:'red', alignSelf:'flex-start', marginLeft:15}}>{errors.email}</Text>}
+          <TextInput 
+            onChangeText={handleChange('password')}
+            placeholder="Senha"
+            name="password"
+            style={styles.Input}
+            placeholderTextColor={'#FF914D'}
+            maxLength={8}
+            secureTextEntry
+            returnKeyType="send"
+            ref={ref_input2}
+            onSubmitEditing={handleSubmit}
+            value={values.password}
+          />
+          {errors.password && <Text style={{fontFamily:'serif', fontSize:13, color:'red', alignSelf:'flex-start', marginLeft:15}}>{errors.password}</Text>}
           <Text style={{
             fontFamily:'serif',
             fontSize:18,
@@ -80,13 +138,16 @@ function LoginPage({ navigation }){
           }} onPress={()=>{}}>Esqueci minha senha.</Text>
 
           
-          <TouchableOpacity style={styles.Button} onPress={()=>{navigation.navigate('Core')}} >
-            <Text style={{
+          <TouchableOpacity style={styles.Button} onPress={handleSubmit} disabled={!isValid} >
+            { loading ? <ActivityIndicator color="#fff" size={42}/> : <><Text style={{
               color:'#fff',
               fontSize:18,
               fontFamily:'serif'
-              }}>Entrar</Text>
+              }}>Entrar</Text></> }
           </TouchableOpacity>
+          </>
+          )}
+          </Formik>
         </View>
     </View>
   );
