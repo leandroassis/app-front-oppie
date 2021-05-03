@@ -13,16 +13,16 @@ function LoginPage({ navigation }){
 
   const ref_input2 = useRef()
 
-  async function submitToAPI(values, isValid){
-    if(isValid){
-      setLoading(true)
-      const Data = {
-        email: values.email,
-        password: values.password
-      }
-      console.log(Data)
-    }
+function submitToAPI(values, isValid){
+  if(isValid)
+  {
+  setLoading(true)
+  const Data = {
+  email: values.email,
+  password: values.password
   }
+  }
+}
 
   const validationSchema = yup.object().shape({
     email: yup

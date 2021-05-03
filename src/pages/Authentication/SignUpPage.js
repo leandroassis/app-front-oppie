@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useRef} from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, TextInput } from 'react-native'
 
 import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
@@ -6,8 +6,12 @@ import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
 import ThreeCircles from '../../components/ThreeCircles'
 import Circle from '../../components/Circles'
 
-
 function SignUpPage({ navigation }){
+  const [loading, setLoading] = useState(false)
+
+  const 
+
+
   return(
     <View style={styles.BackGround}>
     <ThreeCircles left={-140} top={-180} rotation={'-90deg'}/>

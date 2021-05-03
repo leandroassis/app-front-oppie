@@ -108,7 +108,8 @@ export default function LandingPage({ navigation }){
                 top:160,
                 marginBottom:8,
                 color:"#fff",
-                textDecorationLine:'underline'
+                textDecorationLine:'underline',
+                fontWeight:'bold'
             }} onPress={()=>{}}>Clique aqui!</Text>
             </View>
 
@@ -116,7 +117,8 @@ export default function LandingPage({ navigation }){
                 alignSelf:'center',
                 top:160,
                 marginBottom:8,
-                textDecorationLine:'underline'
+                textDecorationLine:'underline',
+                fontWeight:'bold'
             }} onPress={()=>{}} >Termos e condições de serviço.</Text>
         </View>
     );
