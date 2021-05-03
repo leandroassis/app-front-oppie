@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, StyleSheet, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, BackHandler } from 'react-native'
+import React, { useState, useRef } from 'react';
+import { View, StyleSheet, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, BackHandler, ActivityIndicator } from 'react-native'
 
 import ThreeCircles from '../../components/ThreeCircles'
 import Circle from '../../components/Circles'
@@ -7,6 +7,24 @@ import EmailConfirmation from '../../components/EmailConfirmation'
 
 function ConfirmEmailPage({navigation}) {
   BackHandler.addEventListener('hardwareBackPress', ()=>{navigation.navigate('SignUp')})
+
+  const [loading, setloading] = useState(false)
+  const [codigo, setCodigo] = useState('')
+
+  const ref_input1 = useRef()
+  const ref_input2 = useRef()
+  const ref_input3 = useRef()
+  const ref_input4 = useRef()
+  const ref_input5 = useRef()
+  const ref_input6 = useRef()
+
+  function handleSubmit()
+  {
+    setloading(true)
+    console.log(codigo)
+    setloading(false)
+  }
+
   return(
     <KeyboardAvoidingView style={styles.BackGround} behavior="position">
       <ThreeCircles left={240} top={510} rotation={'35deg'} color={'rgba(255, 182, 137, 0.48);'} />
@@ -35,7 +53,7 @@ function ConfirmEmailPage({navigation}) {
           fontSize:16.5,
           fontWeight:'bold',
           marginBottom:10
-        }} >asssisantosleandro@gmail.com</Text>
+        }}>Endereço do async storage</Text>
         <Text style={{
           fontFamily:'serif',
           fontSize:16.5,
@@ -57,12 +75,18 @@ function ConfirmEmailPage({navigation}) {
         <View style={{
           flexDirection:'row',
         }}>
-          <TextInput style={styles.CodeInput} onChange={()=>{}} maxLength={1}/>
-          <TextInput style={styles.CodeInput} onChange={()=>{}} maxLength={1}/>
-          <TextInput style={styles.CodeInput} onChange={()=>{}} maxLength={1}/>
-          <TextInput style={styles.CodeInput} onChange={()=>{}} maxLength={1}/>
-          <TextInput style={styles.CodeInput} onChange={()=>{}} maxLength={1}/>
-          <TextInput style={styles.CodeInput} onChange={()=>{}} maxLength={1}/>
+          <TextInput style={styles.CodeInput} onKeyPress={({nativeEvent}) => {
+            nativeEvent.key == 'Backspace' ? null : ref_input2.current.focus()}} maxLength={1} ref={ref_input1}  onChangeText={(event)=>{}} />
+          <TextInput style={styles.CodeInput} onKeyPress={({nativeEvent}) => {                                                                             // CONSERTSR AQ
+            nativeEvent.key == 'Backspace' ? ref_input1.current.focus() : ref_input3.current.focus()}} maxLength={1} ref={ref_input2} onChangeText={text => setCodigo(codigo+text)} />
+          <TextInput style={styles.CodeInput} onKeyPress={({nativeEvent}) => {
+            nativeEvent.key == 'Backspace' ? ref_input2.current.focus() : ref_input4.current.focus()}} maxLength={1} ref={ref_input3} onChangeText={text => setCodigo(codigo+text)} />
+          <TextInput style={styles.CodeInput} onKeyPress={({nativeEvent}) => {
+            nativeEvent.key == 'Backspace' ? ref_input3.current.focus() : ref_input5.current.focus()}} maxLength={1} ref={ref_input4} onChangeText={text => setCodigo(codigo+text)} />
+          <TextInput style={styles.CodeInput} onKeyPress={({nativeEvent}) => {
+            nativeEvent.key == 'Backspace' ? ref_input4.current.focus() : ref_input6.current.focus()}} maxLength={1} ref={ref_input5} onChangeText={text => setCodigo(codigo+text)} />
+          <TextInput style={styles.CodeInput} onKeyPress={({nativeEvent}) => {
+            nativeEvent.key == 'Backspace' ? ref_input5.current.focus() : null}} maxLength={1} ref={ref_input6} returnKeyType='send' onChangeText={text => setCodigo(codigo+text)} onSubmitEditing={()=>{handleSubmit()}}/>
         </View>
 
         <Text onPress={()=>{}} style={{
@@ -74,12 +98,12 @@ function ConfirmEmailPage({navigation}) {
           marginTop:10
         }}>Reenviar email de confirmação</Text>
 
-          <TouchableOpacity style={styles.Button} onPress={()=>{navigation.navigate('Find for')}}>
-            <Text style={{
+          <TouchableOpacity style={styles.Button} onPress={()=>{handleSubmit()}}>
+          { loading ? <ActivityIndicator color="#fff" size={42}/> : <><Text style={{
               color:'#fff',
               fontSize:18,
               fontFamily:'serif'
-              }}>Enviar</Text>
+              }}>Enviar</Text></> }
           </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>

@@ -13,7 +13,7 @@ function LoginPage({ navigation }){
 
   const ref_input2 = useRef()
 
-function submitToAPI(values, isValid){
+  function submitToAPI(values, isValid){
   if(isValid)
   {
   setLoading(true)
@@ -21,6 +21,8 @@ function submitToAPI(values, isValid){
   email: values.email,
   password: values.password
   }
+  navigation.navigate('Core')
+  setLoading(false)
   }
 }
 
@@ -32,7 +34,7 @@ function submitToAPI(values, isValid){
     password: yup
       .string()
       .min(8, ({min}) => `Senha deve conter ao menos ${min} dígitos.`)
-      .max(8, ({max}) => `Senha deve conter no máximo ${max} dígitos.`)
+      .max(12, ({max}) => `Senha deve conter no máximo ${max} dígitos.`)
       .required('Senha é obrigatório.')
   })
   
@@ -125,6 +127,7 @@ function submitToAPI(values, isValid){
               fontFamily:'serif',
               fontSize:18,
               textAlign:'center',
+              fontWeight:'bold',
               color:'rgba(0,0,0,0.75)',
               marginTop:35,
               marginBottom:5
@@ -134,11 +137,12 @@ function submitToAPI(values, isValid){
           <Text style={{
             textDecorationLine:'underline',
             fontFamily:'serif',
+            fontWeight:'bold',
             fontSize:16
           }} onPress={()=>{}}>Esqueci minha senha.</Text>
 
           
-          <TouchableOpacity style={styles.Button} onPress={handleSubmit} disabled={!isValid} >
+          <TouchableOpacity style={styles.Button} onPress={handleSubmit}>
             { loading ? <ActivityIndicator color="#fff" size={42}/> : <><Text style={{
               color:'#fff',
               fontSize:18,

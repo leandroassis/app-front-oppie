@@ -6,5 +6,4 @@
     - 
 
 # Doing:
-- Implementando fetch
-- 
+- Automatização do front
